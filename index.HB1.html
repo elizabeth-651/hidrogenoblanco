@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidrógeno Blanco - Transición Energética en Colombia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #004C97 0%, #2E8B57 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            color: #004C97;
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        .colombia-flag {
+            width: 40px;
+            height: 30px;
+            background: linear-gradient(to bottom, #FFD700 33.33%, #004C97 33.33%, #004C97 66.66%, #DC143C 66.66%);
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #004C97;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background: #004C97;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hexagon" patternUnits="userSpaceOnUse" width="20" height="17.32"><polygon points="10,0 20,5.77 20,11.55 10,17.32 0,11.55 0,5.77" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagon)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #FFD700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h3 {
+            font-size: 2.5rem;
+            color: #004C97;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .platform-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            opacity: 0.1;
+            transition: all 0.3s;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .platform-card:hover::before {
+            transform: scale(3);
+        }
+
+        .platform-card.instagram {
+            border-color: #E4405F;
+        }
+
+        .platform-card.instagram::before {
+            background: #E4405F;
+        }
+
+        .platform-card.linkedin {
+            border-color: #0077B5;
+        }
+
+        .platform-card.linkedin::before {
+            background: #0077B5;
+        }
+
+        .platform-card.facebook {
+            border-color: #1877F2;
+        }
+
+        .platform-card.facebook::before {
+            background: #1877F2;
+        }
+
+        .platform-card.tiktok {
+            border-color: #000000;
+        }
+
+        .platform-card.tiktok::before {
+            background: #000000;
+        }
+
+        .platform-card.youtube {
+            border-color: #FF0000;
+        }
+
+        .platform-card.youtube::before {
+            background: #FF0000;
+        }
+
+        .platform-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .platform-card .audience {
+            background: rgba(0,76,151,0.1);
+            color: #004C97;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, #004C97, #2E8B57);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 2rem 0;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border: 4px solid #004C97;
+            top: 2.5rem;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 2rem;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 2rem;
+        }
+
+        .timeline-content h4 {
+            color: #004C97;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .kpis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #004C97 0%, #2E8B57 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .kpi-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #FFD700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #004C97 0%, #2E8B57 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #FFD700;
+            color: #004C97;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255,215,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,215,0,0.4);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid #004C97;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .demo-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .demo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .demo-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .timeline::after {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 50px;
+            }
+
+            .timeline-item::after {
+                left: 8px !important;
+            }
+
+            .timeline-content {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .section-header h3 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="colombia-flag"></div>
+                    <h1>H₂ Blanco Colombia</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#estrategia">Estrategia</a></li>
+                        <li><a href="#plataformas">Plataformas</a></li>
+                        <li><a href="#cronograma">Cronograma</a></li>
+                        <li><a href="#metricas">Métricas</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Hidrógeno Blanco</h2>
+                <p>Campaña de Expectativa para la Transición Energética en Colombia</p>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">1,000+</span>
+                        <span class="stat-label">Personas a sensibilizar</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Meses de campaña</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Plataformas sociales</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">7%</span>
+                        <span class="stat-label">Engagement objetivo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="estrategia" class="section">
+            <div class="section-header">
+                <h3>🎯 Objetivo Estratégico</h3>
+                <p>Generar y difundir contenidos educomunicativos sobre transporte, almacenamiento y uso del hidrógeno blanco para sensibilizar a mínimo 1.000 personas y promover la comprensión del significado de una transición energética en Colombia.</p>
+            </div>
+
+            <div class="interactive-demo">
+                <h4 style="text-align: center; color: #004C97; margin-bottom: 1rem;">🧪 Dinámicas Interactivas</h4>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <span class="demo-emoji">🤔</span>
+                        <strong>Lunes</strong><br>
+                        Mito vs Realidad H₂
+                    </div>
+                    <div class="demo-item">
+                        <span class="demo-emoji">🧠</span>
+                        <strong>Miércoles</strong><br>
+                        Trivia Técnica
+                    </div>
+                    <div class="demo-item">
+                        <span class="demo-emoji">⚡</span>
+                        <strong>Viernes</strong><br>
+                        Calculadora Energética
+                    </div>
+                    <div class="demo-item">
+                        <span class="demo-emoji">💭</span>
+                        <strong>Domingo</strong><br>
+                        Pregunta Abierta
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plataformas" class="section">
+            <div class="section-header">
+                <h3>📱 Estrategia Multicanal</h3>
+                <p>Cada plataforma con un enfoque específico y audiencia diferenciada</p>
+            </div>
+
+            <div class="platforms-grid">
+                <div class="platform-card instagram">
+                    <h4>📸 Instagram</h4>
+                    <div class="audience">25-34 años • Profesionales energéticos</div>
+                    <p><strong>Enfoque:</strong> Aprendizaje visual mediante infografías técnicas, reels educativos sobre transporte y almacenamiento.</p>
+                    <p><strong>Meta:</strong> 40% del alcance total (400 personas)</p>
+                </div>
+
+                <div class="platform-card linkedin">
+                    <h4>💼 LinkedIn</h4>
+                    <div class="audience">Empresarios • Académicos • Tomadores de decisiones</div>
+                    <p><strong>Enfoque:</strong> Contenido técnico-profesional sobre metodologías de transporte y análisis del impacto.</p>
+                    <p><strong>Meta:</strong> 25% del alcance total (250 personas)</p>
+                </div>
+
+                <div class="platform-card facebook">
+                    <h4>👥 Facebook</h4>
+                    <div class="audience">35-55 años • Público general interesado</div>
+                    <p><strong>Enfoque:</strong> Videos explicativos largos sobre uso seguro del hidrógeno y grupos de discusión.</p>
+                    <p><strong>Meta:</strong> 20% del alcance total (200 personas)</p>
+                </div>
+
+                <div class="platform-card tiktok">
+                    <h4>🎵 TikTok</h4>
+                    <div class="audience">18-24 años • Estudiantes • Jóvenes</div>
+                    <p><strong>Enfoque:</strong> Microaprendizaje sobre transporte seguro, explicaciones rápidas de transición energética.</p>
+                    <p><strong>Meta:</strong> 10% del alcance total (100 personas)</p>
+                </div>
+
+                <div class="platform-card youtube">
+                    <h4>🎥 YouTube</h4>
+                    <div class="audience">Todos los segmentos • Contenido evergreen</div>
+                    <p><strong>Enfoque:</strong> Videos explicativos largos sobre metodologías de almacenamiento y documentales.</p>
+                    <p><strong>Meta:</strong> 5% del alcance total (50 personas)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cronograma" class="section">
+            <div class="section-header">
+                <h3>⏱️ Cronograma de 6 Meses</h3>
+                <p>Olas temáticas progresivas para la apropiación del conocimiento</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Meses 1-2: Descubriendo el Hidrógeno Blanco</h4>
+                        <p>Introducción al concepto, diferencias con otros tipos de hidrógeno, y el papel en la transición energética colombiana.</p>
+                        <strong>Meta:</strong> 45% reconocimiento del término
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Meses 3-4: Seguridad y Almacenamiento</h4>
+                        <p>Protocolos de seguridad, métodos de almacenamiento y transporte seguro del hidrógeno blanco.</p>
+                        <strong>Meta:</strong> 65% respuestas correctas en trivias de seguridad
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Meses 5-6: Beneficios para Colombia</h4>
+                        <p>Impacto socioeconómico, oportunidades laborales y significado completo de la transición energética.</p>
+                        <strong>Meta:</strong> 80+ suscriptores activos al boletín
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="metricas" class="section">
+            <div class="section-header">
+                <h3>📊 KPIs y Métricas de Éxito</h3>
+                <p>Indicadores específicos para medir el impacto y la apropiación del conocimiento</p>
+            </div>
+
+            <div class="kpis-grid">
+                <div class="kpi-card">
+                    <span class="kpi-number">1,000+</span>
+                    <strong>Personas Únicas Sensibilizadas</strong>
+                    <p style="margin-top: 1rem; opacity: 0.9;">Meta principal cuantitativa en 6 meses</p>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-number">7%</span>
+                    <strong>Engagement Promedio</strong>
+                    <p style="margin-top: 1rem; opacity: 0.9;">Optimizado para audiencia técnica especializada</p>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-number">75%</span>
+                    <strong>Tasa de Completación</strong>
+                    <p style="margin-top: 1rem; opacity: 0.9;">En reels educativos sobre H₂ blanco</p>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-number">8+</span>
+                    <strong>Embajadores Identificados</strong>
+                    <p style="margin-top: 1rem; opacity: 0.9;">Usuarios altamente comprometidos</p>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-number">65%</span>
+                    <strong>Respuestas Correctas</strong>
+                    <p style="margin-top: 1rem; opacity: 0.9;">En evaluaciones técnicas de seguridad</p>
+                </div>
+
+                <div class="kpi-card">
+                    <span class="kpi-number">25+</span>
+                    <strong>Solicitudes de Información</strong>
+                    <p style="margin-top: 1rem; opacity: 0.9;">Adicional durante los 6 meses</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="cta-section">
+        <div class="container">
+            <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">🚀 ¿Listo para Implementar?</h3>
+            <p style="font-size: 1.3rem; max-width: 600px; margin: 0 auto;">Esta campaña está completamente preparada para generar conocimiento sólido y engagement auténtico sobre el hidrógeno blanco como elemento clave de la transición energética colombiana.</p>
+            <a href="#" class="cta-button">Comenzar Implementación</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Campaña Hidrógeno Blanco - Transición Energética Colombia</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">Contenido técnico validado por expertos del sector energético</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animación suave para los enlaces de navegación
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactividad para los elementos demo
+        document.querySelectorAll('.demo-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const day = this.querySelector('strong').textContent;
+                const activity = this.querySelector('br').nextSibling.textContent.trim();
+                alert(`🎯 ${day}: ${activity}\n\n¡Esta dinámica interactiva aumentará el engagement y la participación de la audiencia en la campaña de Hidrógeno Blanco!`);
+            });
+        });
+
+        // Efecto de conteo animado para los números
+        function animateNumbers() {
+            const numberElements = document.querySelectorAll('.stat-number, .kpi-number');
+            
+            const observerOptions = {
+                threshold: 0.7,
+                rootMargin: '0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const finalText = element.textContent;
+                        const finalNumber = parseInt(finalText.replace(/\D/g, '')) || 0;
+                        const suffix = finalText.replace(/[\d,]/g, '');
+                        
+                        if (finalNumber > 0) {
+                            element.textContent = '0' + suffix;
+                            
+                            let currentNumber = 0;
+                            const increment = finalNumber / 30;
+                            const timer = setInterval(() => {
+                                currentNumber += increment;
+                                if (currentNumber >= finalNumber) {
+                                    element.textContent = finalText;
+                                    clearInterval(timer);
+                                } else {
+                                    element.textContent = Math.floor(currentNumber) + suffix;
+                                }
+                            }, 50);
+                        }
+                        
+                        observer.unobserve(element);
+                    }
+                });
+            }, observerOptions);
+
+            numberElements.forEach(el => observer.observe(el));
+        }
+
+        // Inicializar animaciones cuando la página carga
+        window.addEventListener('load', animateNumbers);
+    </script>
+</body>
+</html>
