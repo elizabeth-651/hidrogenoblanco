@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaña Expectativa - Hidrógeno Blanco Colombia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #004C97 0%, #ffffff 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: #004C97;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,76,151,0.3);
+        }
+        
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .flag-emoji {
+            font-size: 2rem;
+            margin: 0 10px;
+        }
+        
+        nav {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .nav-item {
+            color: #004C97;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: #004C97;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            padding: 3rem 0;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #004C97;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 800;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #004C97;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,76,151,0.2);
+        }
+        
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: #004C97;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #004C97;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #FFD700;
+            border-radius: 50%;
+            border: 3px solid #004C97;
+        }
+        
+        .month-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: #004C97;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .content-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .content-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .content-list li::before {
+            content: "📱";
+            position: absolute;
+            left: 0;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, #004C97 0%, #0056b3 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .kpi-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .kpi-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+        
+        .kpi-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .social-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .social-card:hover {
+            border-color: #004C97;
+            transform: translateY(-3px);
+        }
+        
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .example-content {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #FFD700;
+            margin: 1rem 0;
+            font-family: 'Source Sans Pro', monospace;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #004C97 0%, #0056b3 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+        
+        .cta-button {
+            background: #FFD700;
+            color: #004C97;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,215,0,0.3);
+        }
+        
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .budget-table th,
+        .budget-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .budget-table th {
+            background: #004C97;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .budget-table tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .accessibility-checklist {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .checklist-item::before {
+            content: "✅";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background: #004C97;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .grid,
+            .kpi-grid,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+        }
+        
+        .interactive-demo {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .demo-button {
+            background: #004C97;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .demo-content {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .demo-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@400;500;700&family=Bebas+Neue&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="hero-title">
+                🌟 CAMPAÑA DE EXPECTATIVA
+                <span class="flag-emoji">🇨🇴</span>
+            </h1>
+            <p class="hero-subtitle">HIDRÓGENO BLANCO - COLOMBIA HACIA LA TRANSICIÓN ENERGÉTICA</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#objetivo" class="nav-item">🎯 Objetivo</a>
+                <a href="#redes" class="nav-item">📱 Redes Sociales</a>
+                <a href="#contenidos" class="nav-item">📅 Plan de Contenidos</a>
+                <a href="#ejemplos" class="nav-item">🎬 Ejemplos</a>
+                <a href="#kpis" class="nav-item">📊 KPIs</a>
+                <a href="#implementacion" class="nav-item">🚀 Implementación</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <section id="objetivo" class="section">
+            <h2 class="section-title">🎯 Objetivo de la Campaña</h2>
+            <div class="card">
+                <p style="font-size: 1.2rem; text-align: center; line-height: 1.8;">
+                    <strong>Generar y difundir contenidos educomunicativos sobre transporte, almacenamiento y uso del hidrógeno blanco</strong> a través de redes sociales y entidades aliadas para <strong>sensibilizar a mínimo 1.000 personas</strong> en 6 meses, preparando a la audiencia para fases posteriores de apropiación social y participación activa, promoviendo la comprensión del significado de una <strong>transición energética en Colombia</strong>.
+                </p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3 class="card-title">👥 Públicos Objetivo</h3>
+                    <ul>
+                        <li><strong>Profesionales y empresarios</strong> del sector energético</li>
+                        <li><strong>Estudiantes y académicos</strong> en energías renovables</li>
+                        <li><strong>Público general</strong> interesado en transición energética</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">🎨 Diseño Visual</h3>
+                    <div style="display: flex; align-items: center; gap: 15px; margin: 1rem 0;">
+                        <div style="width: 50px; height: 50px; background: #004C97; border-radius: 50%;"></div>
+                        <span><strong>Azul Profundo:</strong> #004C97</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: #FFFFFF; border-radius: 50%; border: 2px solid #ddd;"></div>
+                        <span><strong>Blanco:</strong> #FFFFFF</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">♿ Accesibilidad DUA</h3>
+                    <ul>
+                        <li>Subtítulos en todos los videos</li>
+                        <li>Alt-text descriptivo en imágenes</li>
+                        <li>Lenguaje claro e inclusivo</li>
+                        <li>Múltiples formatos de contenido</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="redes" class="section">
+            <h2 class="section-title">📱 Estrategia por Red Social</h2>
+            <div class="social-grid">
+                <div class="social-card">
+                    <div class="social-icon">📸</div>
+                    <h3 class="card-title">Instagram</h3>
+                    <p><strong>40% del alcance (400 personas)</strong></p>
+                    <p>Contenido visual educativo, reels técnicos, stories interactivos</p>
+                    <p><em>Público: 25-34 años, profesionales jóvenes</em></p>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon">💼</div>
+                    <h3 class="card-title">LinkedIn</h3>
+                    <p><strong>25% del alcance (250 personas)</strong></p>
+                    <p>Contenido técnico-profesional, casos de estudio, análisis sectorial</p>
+                    <p><em>Público: Empresarios, académicos, tomadores de decisiones</em></p>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon">👥</div>
+                    <h3 class="card-title">Facebook</h3>
+                    <p><strong>20% del alcance (200 personas)</strong></p>
+                    <p>Videos explicativos largos, grupos de discusión</p>
+                    <p><em>Público: 35-55 años, público general</em></p>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon">🎵</div>
+                    <h3 class="card-title">TikTok</h3>
+                    <p><strong>10% del alcance (100 personas)</strong></p>
+                    <p>Microaprendizaje, explicaciones rápidas, tendencias educativas</p>
+                    <p><em>Público: 18-24 años, estudiantes</em></p>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon">📹</div>
+                    <h3 class="card-title">YouTube</h3>
+                    <p><strong>5% del alcance (50 personas)</strong></p>
+                    <p>Videos educativos profundos, webinars, documentales</p>
+                    <p><em>Público: Todos los segmentos, contenido evergreen</em></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contenidos" class="section">
+            <h2 class="section-title">📅 Plan de Contenidos - 6 Meses</h2>
+            
+            <div class="interactive-demo">
+                <h3 style="margin-bottom: 1rem;">🎮 Explora el Contenido por Mes</h3>
+                <button class="demo-button" onclick="showMonth(1)">Mes 1-2: Descubriendo H2 Blanco</button>
+                <button class="demo-button" onclick="showMonth(2)">Mes 3-4: Seguridad y Transporte</button>
+                <button class="demo-button" onclick="showMonth(3)">Mes 5-6: Beneficios para Colombia</button>
+                
+                <div id="month1" class="demo-content">
+                    <h4 style="color: #004C97; margin-bottom: 1rem;">📚 MESES 1-2: DESCUBRIENDO EL HIDRÓGENO BLANCO</h4>
+                    <div class="grid">
+                        <div class="card">
+                            <h5 class="card-title">🎬 Reels (4 por mes)</h5>
+                            <ul class="content-list">
+                                <li>"¿Qué es el hidrógeno blanco? La revolución energética"</li>
+                                <li>"Así se forma el hidrógeno blanco bajo tierra"</li>
+                                <li>"Un día en 2030: Colombia alimentada por H2"</li>
+                                <li>"Tecnología colombiana para manejo seguro"</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-title">🖼️ Carruseles (3 por mes)</h5>
+                            <ul class="content-list">
+                                <li>"Hidrógeno Verde vs Azul vs BLANCO"</li>
+                                <li>"5 usos del H2 blanco que transformarán Colombia"</li>
+                                <li>"Del laboratorio a la realidad: aplicaciones"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="month2" class="demo-content">
+                    <h4 style="color: #004C97; margin-bottom: 1rem;">🔒 MESES 3-4: SEGURIDAD Y TRANSPORTE</h4>
+                    <div class="grid">
+                        <div class="card">
+                            <h5 class="card-title">🎬 Reels (4 por mes)</h5>
+                            <ul class="content-list">
+                                <li>"Desmintiendo mitos: ¿Es seguro el hidrógeno?"</li>
+                                <li>"Del pozo al tanque: cadena logística del H2"</li>
+                                <li>"Transporte seguro por Colombia"</li>
+                                <li>"Protocolo de seguridad en 6 pasos"</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-title">🖼️ Carruseles (3 por mes)</h5>
+                            <ul class="content-list">
+                                <li>"4 métodos para almacenar hidrógeno blanco"</li>
+                                <li>"Hidrogenoductos: autopistas energéticas"</li>
+                                <li>"Normativas internacionales de seguridad"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="month3" class="demo-content">
+                    <h4 style="color: #004C97; margin-bottom: 1rem;">🇨🇴 MESES 5-6: BENEFICIOS PARA COLOMBIA</h4>
+                    <div class="grid">
+                        <div class="card">
+                            <h5 class="card-title">🎬 Reels (4 por mes)</h5>
+                            <ul class="content-list">
+                                <li>"7 beneficios del H2 blanco para Colombia"</li>
+                                <li>"Comunidades rurales transformadas"</li>
+                                <li>"¿Qué significa la transición energética?"</li>
+                                <li>"Colombia carbono neutral 2050"</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h5 class="card-title">🖼️ Carruseles (3 por mes)</h5>
+                            <ul class="content-list">
+                                <li>"Empleos verdes: oportunidades laborales"</li>
+                                <li>"2024-2050: Hoja de ruta energética"</li>
+                                <li>"Tu papel en la transición energética"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">📊 Frecuencia Mensual</h3>
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-number">4</div>
+                        <div class="kpi-label">Reels por mes</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-number">3</div>
+                        <div class="kpi-label">Carruseles por mes</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-number">4</div>
+                        <div class="kpi-label">Posts simples por mes</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-number">1</div>
+                        <div class="kpi-label">Cápsula de conocimiento por mes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ejemplos" class="section">
+            <h2 class="section-title">🎬 Ejemplos de Contenido</h2>
+            
+            <div class="card">
+                <h3 class="card-title">📱 Ejemplo Guión Reel - Mes 1</h3>
+                <div class="example-content">
+                    <strong>"¿Qué es el hidrógeno blanco? La revolución energética que viene a Colombia"</strong><br><br>
+                    
+                    <strong>[0-5s] HOOK POTENTE:</strong><br>
+                    • Visual: Colombia desde el espacio iluminándose<br>
+                    • Texto: "Colombia tiene un tesoro energético oculto..."<br>
+                    • Voz: "¿Y si te dijera que Colombia puede liderar la revolución energética mundial?"<br><br>
+                    
+                    <strong>[6-15s] PROBLEMA-CONTEXTO:</strong><br>
+                    • Visual: Animación combustibles fósiles vs energías limpias<br>
+                    • Texto: "La transición energética es AHORA"<br>
+                    • Voz: "Mientras el mundo busca alternativas limpias, Colombia ya tiene la solución"<br><br>
+                    
+                    <strong>[16-30s] SOLUCIÓN-EXPLICACIÓN:</strong><br>
+                    • Visual: Formación geológica del hidrógeno blanco<br>
+                    • Texto: "HIDRÓGENO BLANCO = H2 100% natural"<br>
+                    • Voz: "El hidrógeno blanco se forma naturalmente bajo tierra, sin contaminar"
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">📄 Ejemplo Post Simple</h3>
+                <div class="example-content">
+                    💡 <strong>DATO QUE CAMBIA TODO:</strong><br><br>
+                    
+                    1 kilogramo de hidrógeno blanco contiene <strong>3x más energía</strong> que 1 kilogramo de gasolina 🚗⚡<br><br>
+                    
+                    🇨🇴 <strong>¿Sabías que Colombia podría producir suficiente hidrógeno blanco para abastecer el 20% de su demanda energética para 2035?</strong><br><br>
+                    
+                    Esto significa:<br>
+                    ✅ Menos dependencia de combustibles fósiles<br>
+                    ✅ Más empleos verdes en regiones rurales<br>
+                    ✅ Aire más limpio para nuestras ciudades<br>
+                    ✅ Colombia líder en transición energética<br><br>
+                    
+                    <strong>La revolución energética ya comenzó. ¿Te unes?</strong><br><br>
+                    
+                    #HidrógenoBlancoColombia #TransiciónEnergética #EnergíaLimpia
+                </div>
+            </div>
+        </section>
+
+        <section id="kpis" class="section">
+            <h2 class="section-title">📊 KPIs y Métricas</h2>
+            
+            <div class="card">
+                <h3 class="card-title">🎯 Métricas Principales</h3>
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-number">1,000+</div>
+                        <div class="kpi-label">Personas sensibilizadas (6 meses)</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-number">7%</div>
+                        <div class="kpi-label">Engagement promedio mensual</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-number">75%</div>
+                        <div class="kpi-label">Tasa completación reels</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-number">80+</div>
+                        <div class="kpi-label">Suscriptores boletín</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-number">45%</div>
+                        <div class="kpi-label">Reconocimiento "hidrógeno blanco"</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-number">8+</div>
+                        <div class="kpi-label">Embajadores identificados</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3 class="card-title">📈 Por Red Social</h3>
+                    <ul>
+                        <li><strong>Instagram:</strong> 60+ alcance stories, 15+ guardados</li>
+                        <li><strong>LinkedIn:</strong> 1,200+ impresiones, 30+ clics</li>
+                        <li><strong>Facebook:</strong> 100+ alcance, 45s+ visualización</li>
+                        <li><strong>TikTok:</strong> 250+ visualizaciones, 65%+ finalización</li>
+                        <li><strong>YouTube:</strong> 60%+ retención, 20+ suscriptores</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">🧠 Apropiación del Conocimiento</h3>
+                    <ul>
+                        <li><strong>Meses 1-2:</strong> 45% reconocimiento término</li>
+                        <li><strong>Meses 3-4:</strong> 65% respuestas correctas trivias</li>
+                        <li><strong>Meses 5-6:</strong> 80+ suscripciones boletín</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="implementacion" class="section">
+            <h2 class="section-title">🚀 Implementación y Presupuesto</h2>
+            
+            <div class="card">
+                <h3 class="card-title">📅 Cronograma Ejecutivo</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="month-title">Semanas -3 a 0: Preparación</div>
+                        <p>Creación de assets, configuración técnica, capacitación del equipo</p>
+                        <p><strong>Entregables:</strong> 30 assets visuales, 12 videos, 6 cápsulas</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="month-title">Meses 1-2: Lanzamiento</div>
+                        <p>48 publicaciones + 2 cápsulas + reportes mensuales</p>
+                        <p><strong>KPI crítico:</strong> 400 personas únicas alcanzadas</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="month-title">Meses 3-4: Profundización</div>
+                        <p>48 publicaciones técnicas + 2 cápsulas + webinar</p>
+                        <p><strong>KPI crítico:</strong> 65% respuestas correctas en trivias</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="month-title">Meses 5-6: Apropiación</div>
+                        <p>48 publicaciones + 2 cápsulas + evento de cierre</p>
+                        <p><strong>KPI crítico:</strong> 80+ suscripciones activas</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">💰 Presupuesto Estimado (6 meses)</h3>
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th>Valor (COP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Recursos Humanos</strong></td>
+                            <td>Community Manager + Diseñador + Editor + Validador</td>
+                            <td>$45.000.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Herramientas</strong></td>
+                            <td>Software de gestión y analytics</td>
+                            <td>$2.120.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Producción</strong></td>
+                            <td>Fotografía, ilustraciones, stock footage</td>
+                            <td>$7.300.000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Promoción</strong></td>
+                            <td>Pauta estratégica y eventos</td>
+                            <td>$9.500.000</td>
+                        </tr>
+                        <tr style="background: #004C97; color: white; font-weight: bold;">
+                            <td>TOTAL</td>
+                            <td>Campaña completa 6 meses</td>
+                            <td>$63.920.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">♿ Checklist Accesibilidad DUA</h3>
+                <div class="accessibility-checklist">
+                    <div class="checklist-item">Alt-text descriptivo en todas las imágenes</div>
+                    <div class="checklist-item">Subtítulos profesionales en videos</div>
+                    <div class="checklist-item">Contraste mínimo 4.5:1</div>
+                    <div class="checklist-item">Tipografías legibles (14px+)</div>
+                    <div class="checklist-item">Múltiples formatos de contenido</div>
+                    <div class="checklist-item">Lenguaje claro e inclusivo</div>
+                    <div class="checklist-item">Opciones de participación variadas</div>
+                    <div class="checklist-item">Espacios seguros de aprendizaje</div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="cta-section">
+            <h2 style="margin-bottom: 1rem;">🎯 Campaña Lista para Implementación</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Esta campaña está <strong>100% diseñada</strong> para generar conocimiento sólido y engagement auténtico sobre el hidrógeno blanco como elemento clave de la transición energética colombiana.
+            </p>
+            
+            <div class="grid" style="margin: 2rem 0;">
+                <div style="text-align: left;">
+                    <h4 style="color: #FFD700; margin-bottom: 1rem;">✅ Diferenciales Competitivos</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 0.5rem 0;">🎓 Enfoque pedagógico especializado con DUA</li>
+                        <li style="margin: 0.5rem 0;">🔬 Contenido técnico validado por expertos</li>
+                        <li style="margin: 0.5rem 0;">📊 Métricas orientadas a apropiación real</li>
+                        <li style="margin: 0.5rem 0;">🌐 Estrategia multicanal coherente</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: left;">
+                    <h4 style="color: #FFD700; margin-bottom: 1rem;">🚀 Próximos Pasos</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 0.5rem 0;">📋 Semana 1: Aprobación presupuesto</li>
+                        <li style="margin: 0.5rem 0;">🎨 Semana 2: Producción assets mes 1</li>
+                        <li style="margin: 0.5rem 0;">⚙️ Semana 3: Configuración técnica</li>
+                        <li style="margin: 0.5rem 0;">🎉 Semana 4: Lanzamiento oficial</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <button class="cta-button" onclick="window.print()">📥 Descargar Campaña Completa</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Campaña Hidrógeno Blanco Colombia | Transición Energética Nacional</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">🌱 Colombia hacia un futuro energético sostenible</p>
+        </div>
+    </footer>
+
+    <script>
+        function showMonth(monthNumber) {
+            // Ocultar todos los contenidos
+            const allContents = document.querySelectorAll('.demo-content');
+            allContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Mostrar el contenido seleccionado
+            const selectedContent = document.getElementById(`month${monthNumber}`);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+            
+            // Actualizar botones activos
+            const allButtons = document.querySelectorAll('.demo-button');
+            allButtons.forEach(button => {
+                button.style.background = '#004C97';
+            });
+            
+            event.target.style.background = '#FFD700';
+            event.target.style.color = '#004C97';
+        }
+        
+        // Navegación suave
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Efectos de scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // Inicializar efectos
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Mostrar primer mes por defecto
+            setTimeout(() => showMonth(1), 1000);
+        });
+        
+        // Contador animado para KPIs
+        function animateCounter(element, target, duration) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start).toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString() + (element.dataset.suffix || '');
+                }
+            }
+            
+            updateCounter();
+        }
+        
+        // Activar contadores cuando sean visibles
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+        
+        const kpiObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    const target = parseInt(entry.target.dataset.target) || parseInt(entry.target.textContent);
+                    animateCounter(entry.target, target, 2000);
+                    entry.target.dataset.animated = 'true';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.kpi-number').forEach(counter => {
+            kpiObserver.observe(counter);
+        });
+    </script>
